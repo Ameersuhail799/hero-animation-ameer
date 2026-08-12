@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+:root {
+  --void: #030304;
+  --ink: #0B0A10;
+  --violet: #7C3AED;
+  --hot-violet: #A855F7;
+  --silver: #C9C5D0;
+  --text-main: #F6F2FF;
+  --p: 0;
+}
+
+@theme inline {
+  --color-void: var(--void);
+  --color-ink: var(--ink);
+  --color-violet: var(--violet);
+  --color-hot-violet: var(--hot-violet);
+  --color-silver: var(--silver);
+  --color-text-main: var(--text-main);
+  --font-sans: var(--font-instrument-sans), sans-serif;
+  --font-mono: var(--font-fragment-mono), monospace;
+}
+
+@layer base {
+  *, ::after, ::before {
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    background-color: #030304;
+    color: #F6F2FF;
+    font-family: var(--font-instrument-sans), sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+.font-mono-custom {
+  font-family: var(--font-fragment-mono), monospace;
+}
+
+.font-sans-custom {
+  font-family: var(--font-instrument-sans), sans-serif;
+}
+
+.mono-label {
+  font-family: var(--font-fragment-mono), monospace;
+  text-transform: uppercase;
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  color: #C9C5D0;
+}
+
+/* Nav underline wipe effect */
+.nav-link {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 2px;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #7C3AED;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* Visually hidden for accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Keyframe entrance animations */
+@keyframes heroPortraitEntrance {
+  0% {
+    opacity: 0;
+    transform: scale(1.035);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes chromeFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-hero-portrait {
+  animation: heroPortraitEntrance 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-chrome-fade {
+  opacity: 0;
+  animation: chromeFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-portrait {
+    animation: none;
+    opacity: 1;
+    transform: scale(1);
+  }
+  .animate-chrome-fade {
+    animation: none;
+    opacity: 1;
+  }
+}
