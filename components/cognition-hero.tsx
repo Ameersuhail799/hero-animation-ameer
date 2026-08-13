@@ -2,17 +2,17 @@
 
 import React, { useEffect, useRef, useState } from "react";
 
-// Alignment matrix as specified in instructions
+// Alignment matrix for base portrait and Spider-Man reveal mask
 const ALIGN = {
   desktop: {
     scale: 1,
-    x: 1 / 1672,
-    y: 7 / 941,
+    x: 0,
+    y: 0,
   },
   mobile: {
-    scale: 1.02,
-    x: 12 / 853,
-    y: 50 / 1844,
+    scale: 1,
+    x: 0,
+    y: 0,
   },
 };
 
@@ -269,10 +269,10 @@ export function CognitionHero() {
         }
       }
 
-      // Pointer size based on pointer type
+      // Pointer size based on pointer type (smaller liquid touch size)
       const isCoarse =
         ptr.pointerType === "touch" || ptr.pointerType === "pen";
-      const headRadius = (isCoarse ? 100 : 240) * dpr;
+      const headRadius = (isCoarse ? 50 : 100) * dpr;
 
       // 1. Clear offscreen field canvas
       const fw = fieldCanvas.width;
@@ -517,105 +517,7 @@ export function CognitionHero() {
               AMEER SUHAIL
             </span>
           </div>
-
-          {/* Top Center: Minimal Nav (Desktop) */}
-          <nav
-            aria-label="Main Navigation"
-            className="hidden md:flex items-center gap-8"
-          >
-            <a
-              href="#work"
-              className="nav-link font-mono-custom text-[0.7rem] uppercase tracking-[0.16em] text-[#C9C5D0] hover:text-[#F6F2FF] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7C3AED] rounded px-1 min-h-[44px] flex items-center"
-            >
-              WORK INDEX
-            </a>
-            <a
-              href="#about"
-              className="nav-link font-mono-custom text-[0.7rem] uppercase tracking-[0.16em] text-[#C9C5D0] hover:text-[#F6F2FF] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7C3AED] rounded px-1 min-h-[44px] flex items-center"
-            >
-              ABOUT
-            </a>
-            <a
-              href="#experiments"
-              className="nav-link font-mono-custom text-[0.7rem] uppercase tracking-[0.16em] text-[#C9C5D0] hover:text-[#F6F2FF] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7C3AED] rounded px-1 min-h-[44px] flex items-center"
-            >
-              EXPERIMENTS
-            </a>
-          </nav>
-
-          {/* Top Right: Contact */}
-          <div>
-            <a
-              href="mailto:contact@ameersuhail.dev"
-              target="_blank"
-              rel="noreferrer"
-              className="font-mono-custom text-[0.7rem] uppercase tracking-[0.18em] text-[#C9C5D0] hover:text-[#F6F2FF] transition-colors border border-[#C9C5D0]/20 hover:border-[#7C3AED]/60 px-3.5 py-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7C3AED] min-h-[44px] inline-flex items-center justify-center"
-            >
-              CONTACT ↗
-            </a>
-          </div>
         </header>
-
-        {/* BOTTOM CHROME BAR */}
-        <footer className="w-full flex items-end justify-between pointer-events-auto">
-          {/* Bottom Left: Metadata & Intro (Desktop) */}
-          <div className="hidden md:block max-w-xs space-y-1">
-            <div className="mono-label text-[0.62rem] tracking-[0.16em] text-[#C9C5D0]/70">
-              [SYSTEM // COGNITION_FIELD: ACTIVE]
-            </div>
-            <p className="font-mono-custom text-xs uppercase tracking-[0.14em] text-[#F6F2FF] font-medium">
-              AI / ML ENGINEER · CREATIVE DEVELOPER
-            </p>
-          </div>
-
-          {/* Bottom Center: Interaction Cue with --p crossfade */}
-          <div className="mx-auto md:mx-0 text-center flex flex-col items-center gap-2">
-            {/* Small glowing violet dot responding to --p */}
-            <div
-              className="w-2 h-2 rounded-full bg-[#7C3AED] transition-transform duration-200"
-              style={{
-                boxShadow:
-                  "0 0 calc(8px + var(--p) * 16px) rgba(168, 85, 247, calc(0.4 + var(--p) * 0.6))",
-                transform: "scale(calc(1 + var(--p) * 0.4))",
-              }}
-            />
-            {/* Stacked text crossfade based on --p */}
-            <div className="relative h-5 min-w-[160px] flex items-center justify-center">
-              <span
-                className="absolute font-mono-custom text-[0.65rem] uppercase tracking-[0.2em] text-[#C9C5D0] transition-opacity duration-75"
-                style={{
-                  opacity: "calc(1 - var(--p) * 1.6)",
-                }}
-              >
-                MOVE INTO THE FIELD
-              </span>
-              <span
-                className="absolute font-mono-custom text-[0.65rem] uppercase tracking-[0.22em] text-[#A855F7] font-semibold transition-opacity duration-75"
-                style={{
-                  opacity: "calc((var(--p) - 0.55) * 2.2)",
-                }}
-              >
-                FORM ACQUIRED
-              </span>
-            </div>
-          </div>
-
-          {/* Bottom Right: Section Index */}
-          <div className="flex items-center gap-3 font-mono-custom text-xs text-[#C9C5D0]">
-            <span className="text-[#F6F2FF] font-medium">01</span>
-            <div className="w-12 h-[2px] bg-[#C9C5D0]/20 rounded-full relative overflow-hidden">
-              <div
-                className="absolute left-0 top-0 h-full w-1/4 bg-[#7C3AED] transition-all duration-150"
-                style={{
-                  boxShadow:
-                    "0 0 calc(4px + var(--p) * 8px) rgba(124, 58, 237, calc(0.5 + var(--p) * 0.5))",
-                  filter: "brightness(calc(1 + var(--p) * 0.5))",
-                }}
-              />
-            </div>
-            <span className="text-[#C9C5D0]/60">04</span>
-          </div>
-        </footer>
       </div>
     </section>
   );
